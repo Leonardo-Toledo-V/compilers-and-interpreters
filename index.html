@@ -3,10 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="shortcut icon" href="./img/compiler.png" type="image/webp">
+    <title>Togo language</title>
 </head>
 <body>
-    
+    <div class="w-full h-screen flex justify-center">
+        <div class="h-full bg-red-500 w-full p-6">
+            Información del código
+            <div class="mt-12" id="output"></div>
+        </div>
+        <div class="bg-green-500 w-full p-6 h-screen">
+            Código:
+            <div class="flex flex-col w-full gap-y-2 h-full">
+                <textarea id="code" class="h-[50%] mt-12">fn setPassowrd(str pwd): void{}</textarea>
+                <button  id="analysisBtn"  class="bg-red-500 px-6 cursor-pointer hover:bg-red-600 duration-300">Analizar</button>
+                <button  id="cleanBtn"  class="bg-red-500 px-6 cursor-pointer hover:bg-red-600 duration-300">Limpiar</button>
+                <button  id="exampleBtn"  class="bg-red-500 px-6 cursor-pointer hover:bg-red-600 duration-300">Ejemplos</button>
+            </div>
+        </div>
+    </div>
 </body>
+<script src="https://cdn.tailwindcss.com"></script>
 <script src="./scripts/lexical-analysis.js"></script>
 </html>

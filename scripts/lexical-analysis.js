@@ -26,9 +26,9 @@ class Lexer {
             '{': 'SIMBOLOS',
             '}': 'SIMBOLOS',
             ':': 'SIMBOLOS',
+            ';': 'SIMBOLOS',
         };
     }
-
     nextToken() {
         this.skipWhitespace();
         if (this.pos >= this.input.length) {
@@ -57,7 +57,7 @@ class Lexer {
             char = this.input[this.pos];
         }
         if (word !== '') {
-            return { type: 'UNRECOGNIZED WORDS', value: word };
+            return { type: 'IDENTIFICATOR', value: word };
         }
         this.pos++;
         return { type: 'UNKNOWN', value: char };

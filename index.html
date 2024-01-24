@@ -8,17 +8,37 @@
 </head>
 <body>
     <div class="w-full h-screen flex justify-center">
-        <div class="h-full bg-red-500 w-full p-6">
-            Información del código
-            <div class="mt-12" id="output"></div>
+        <div class="h-full bg-[#1e272e] w-full p-6 flex items-center overflow-auto flex-col">
+            <div>
+                <h3 class="text-[#dfe6e9] font-medium text-2xl">Output:</h3>
+            </div>
+            <div class="px-4 sm:px-6 lg:px-8">
+                <div class="sm:flex sm:items-center">
+                </div>
+                <div class="-mx-4 mt-10 ring-1 ring-gray-300 sm:-mx-6 md:mx-0 md:rounded-sm">
+                    <table class="min-w-full divide-y divide-gray-300">
+                    <thead>
+                        <tr>
+                            <th scope="col" class=" py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-[#dfe6e9]">Tokens</th>
+<!--                             <th scope="col" class=" px-3 py-3.5 text-left text-sm font-semibold text-[#dfe6e9]">Lexemas</th> -->
+                            <th scope="col" class=" pr-4 pl-3 text-left text-sm font-semibold text-[#dfe6e9]">Value</th>
+                            <!-- <th scope="col" class=" pr-4 pl-3 text-left text-sm font-semibold text-[#dfe6e9]">Category</th> -->
+                        </tr>
+                    </thead>
+                    <tbody id="output"></tbody>
+                  </table>
+                </div>
+            </div>
         </div>
-        <div class="bg-green-500 w-full p-6 h-screen">
-            Código:
+        <div class="bg-[#2d3436] w-full p-6 h-screen flex flex-col items-center">
+            <div class="flex justify-center items-center text-2xl">
+                <h3 class="text-[#dfe6e9] font-medium">Analizador léxico</h3>
+            </div>
             <div class="flex flex-col w-full gap-y-2 h-full">
-                <textarea id="code" class="h-[50%] mt-12">fn setPassowrd(str pwd): void{}</textarea>
-                <button  id="analysisBtn"  class="bg-red-500 px-6 cursor-pointer hover:bg-red-600 duration-300">Analizar</button>
-                <button  id="exampleBtn"  class="bg-red-500 px-6 cursor-pointer hover:bg-red-600 duration-300">Ejemplos</button>
-                <button  id="cleanBtn"  class="bg-red-500 px-6 cursor-pointer hover:bg-red-600 duration-300">Limpiar</button>
+                <textarea id="code" class="h-[50%] mt-12 p-4 font-medium text-[#2d3436] focus:outline-none "></textarea>
+                <button  id="analysisBtn"  class="bg-[#636e72] text-[#dfe6e9] py-2 font-medium px-6 cursor-pointer hover:bg-[#8395a7] duration-300">Analizar</button>
+                <button  id="exampleBtn"  class="bg-[#636e72] text-[#dfe6e9] py-2 font-medium px-6 cursor-pointer hover:bg-[#8395a7] duration-300">Ejemplos</button>
+                <button  id="cleanBtn"  class="bg-[#636e72] text-[#dfe6e9] py-2 font-medium px-6 cursor-pointer hover:bg-[#8395a7] duration-300">Limpiar</button>
             </div>
         </div>
     </div>

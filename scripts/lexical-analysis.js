@@ -78,7 +78,11 @@ const validateBtn = document.getElementById('analysisBtn');
     let output = document.getElementById('output');
     output.innerHTML = ''; 
     while (token = lexer.nextToken()) {
-        output.innerHTML += `<div>${token.type}: ${token.value}</div>`; 
+        output.innerHTML += `
+        <tr">  
+            <td class="py-4 pl-4 sm:pl-6 pr-3 text-sm text-[#dfe6e9]"> ${token.type}:</td>
+            <td class="pr-4 pl-3 text-sm text-[#dfe6e9]">${token.value}</td>
+        </tr>`; 
     }
 });
 

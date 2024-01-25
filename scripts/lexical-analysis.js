@@ -125,42 +125,40 @@ validateBtn.addEventListener('click', () => {
     let token;
     let output = document.getElementById('output');
     output.innerHTML = '';
-
     while (token = lexer.nextToken()) { }
-
     output.innerHTML += `
     ${palabrasReservadasList.size > 0 ?
-        `<tr>  
+            `<tr>  
             <td class="py-4 pl-4 sm:pl-6 pr-3 text-sm text-[#dfe6e9]"> Palabras Reservadas:</td>
             <td class="pr-4 pl-3 text-sm text-[#dfe6e9]">${Array.from(palabrasReservadasList).join(' , ')}</td>
         </tr>` : ''}
     ${identificadoresList.size > 0 ?
-        `<tr>  
+            `<tr>  
             <td class="py-4 pl-4 sm:pl-6 pr-3 text-sm text-[#dfe6e9]"> Identificadores:</td>
             <td class="pr-4 pl-3 text-sm text-[#dfe6e9]">${Array.from(identificadoresList).join(' , ')}</td>
         </tr>` : ''}
     ${operadorList.size > 0 ?
-        `<tr>  
+            `<tr>  
             <td class="py-4 pl-4 sm:pl-6 pr-3 text-sm text-[#dfe6e9]"> Operadores:</td>
             <td class="pr-4 pl-3 text-sm text-[#dfe6e9]">${Array.from(operadorList).join(' , ')}</td>
         </tr>` : ''}
     ${parentesisList.size > 0 ?
-        `<tr>  
+            `<tr>  
             <td class="py-4 pl-4 sm:pl-6 pr-3 text-sm text-[#dfe6e9]"> Paréntesis:</td>
             <td class="pr-4 pl-3 text-sm text-[#dfe6e9]">${Array.from(parentesisList).join(' , ')}</td>
         </tr>` : ''}
     ${llavesList.size > 0 ?
-        `<tr>  
+            `<tr>  
             <td class="py-4 pl-4 sm:pl-6 pr-3 text-sm text-[#dfe6e9]"> Llaves:</td>
             <td class="pr-4 pl-3 text-sm text-[#dfe6e9]">${Array.from(llavesList).join(' , ')}</td>
         </tr>` : ''}
     ${simbolosList.size > 0 ?
-        `<tr>  
+            `<tr>  
             <td class="py-4 pl-4 sm:pl-6 pr-3 text-sm text-[#dfe6e9]"> Símbolos:</td>
             <td class="pr-4 pl-3 text-sm text-[#dfe6e9]">${Array.from(simbolosList).join(' , ')}</td>
         </tr>` : ''}
     ${unknownList.size > 0 ?
-        `<tr>  
+            `<tr>  
             <td class="py-4 pl-4 sm:pl-6 pr-3 text-sm text-[#dfe6e9]"> Desconocidos:</td>
             <td class="pr-4 pl-3 text-sm text-[#dfe6e9]">${Array.from(unknownList).join(' , ')}</td>
         </tr>` : ''}
@@ -179,9 +177,8 @@ cleanBtn.addEventListener('click', () => {
     parentesisList.clear();
     llavesList.clear();
     simbolosList.clear();
-
-
 })
+
 
 const exampleBtn = document.getElementById('exampleBtn');
 let output = document.getElementById('output');

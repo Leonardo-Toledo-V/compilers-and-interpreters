@@ -1,47 +1,267 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="./img/compiler.png" type="image/webp">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="./img/compiler.png" type="image/webp" />
     <title>Togo language</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="w-full h-screen flex justify-center">
-        <div class="h-full bg-[#1e272e] w-full p-6 flex items-center overflow-auto flex-col">
-            <div>
-                <h3 class="text-[#dfe6e9] font-medium text-2xl">Output:</h3>
+      <div class="h-full bg-[#1e272e] w-full p-6 flex items-center flex-col">
+        <div class="relative overflow-auto pt-6">
+          <div class="relative px-6 lg:px-8">
+            <div class="mx-auto max-w-prose text-lg">
+              <h1>
+                <span
+                  class="block text-center text-lg font-semibold text-[#dfe6e9]"
+                  >Información</span
+                >
+                <span
+                  class="mt-2 block text-center text-3xl font-bold leading-8 tracking-tight text-[#dfe6e9] sm:text-4xl"
+                  >Togo Lang</span
+                >
+              </h1>
+              <p class="mt-8 text-gray-500">
+                Togo, es un lenguaje de programación pensado y diseñado para ser
+                fácil de leer, escribir y entender, con el único propósito
+                académico para la asignatura de
+                <strong>Compiladores e Intérpretes</strong> de la carrera de IS
+                de la <strong>Universidad Politécnica de Chiapas</strong>.
+              </p>
             </div>
-            <div class="px-4 sm:px-6 lg:px-8">
-                <div class="sm:flex sm:items-center">
-                </div>
-                <div class="-mx-4 mt-10 ring-1 ring-gray-300 sm:-mx-6 md:mx-0 md:rounded-sm">
-                    <table class="min-w-full divide-y divide-gray-300">
-                    <thead>
-                        <tr>
-                            <th scope="col" class=" py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-[#dfe6e9]">Tokens</th>
-                            <th scope="col" class=" px-3 py-3.5 text-left text-sm font-semibold text-[#dfe6e9]">Lexema</th>
-                            <!-- <th scope="col" class=" pr-4 pl-3 text-left text-sm font-semibold text-[#dfe6e9]">Category</th> -->
-                        </tr>
-                    </thead>
-                    <tbody id="output"></tbody>
-                  </table>
-                </div>
+            <div class="prose prose-lg prose-indigo mx-auto mt-6 text-gray-500">
+              <p>
+                Está basado en lenguajes de programación como
+                <strong>Go</strong>, <strong>Python</strong> y
+                <strong>Javascript</strong>.
+              </p>
+              <p>
+                En esta sección verás cómo es la gramática de cuatro estructuras
+                del lenguaje, y en el panel derecho, podrás escribir y probar el
+                lenguaje.
+              </p>
+              <br />
+              <h2 class="font-bold text-xl">Variables:</h2>
+              <p>La declaración de variables siguen la siguiente estructura:</p>
+              <code>type name: value;</code>
+              <p>
+                Donde
+                <code class="bg-[#353b48] rounded-md px-3">type</code> puede ser
+                algunos de los tipos de variable permitidas en Togo, como:
+                <code class="bg-[#353b48] rounded-md px-3">num</code>,
+                <code class="bg-[#353b48] rounded-md px-3">str</code>,
+                <code class="bg-[#353b48] rounded-md px-3">bool</code>.
+              </p>
+              <p>
+                Ahora,
+                <code class="bg-[#353b48] rounded-md px-3">name</code> hace
+                referencia al nombre que se le asignará a la variable, este
+                puede ser por ejemplo:
+                <code class="bg-[#353b48] rounded-md px-3">counter1</code>.
+              </p>
+              <br />
+
+              <h2 class="font-bold text-xl">Funciones</h2>
+              <p>La estructura principal de la funciones es la siguiente:</p>
+              <code class="bg-[#353b48] rounded-md px-3">
+                fn name(type param):typereturn{}
+              </code>
+              <p>
+                El símbolo <code class="bg-[#353b48] rounded-md px-3">fn</code>,
+                es una palabra clave reservada, utilizada definir una función,
+                mientras que
+                <code class="bg-[#353b48] rounded-md px-3">name</code> es el
+                nombre de la función, que al igual que los nombres de variable,
+                puede ser cualquier nombre alfanumérico, que no empiece con un
+                dígito.
+              </p>
+              <p>
+                Posteriormente, se localizan los parámetros de la función, que
+                van encerrados entre símbolos de parentesis (<code
+                  class="bg-[#353b48] rounded-md px-3"
+                  >()</code
+                >), y dentro, los parámetros tienen la siguiente estructura:
+                <code class="bg-[#353b48] rounded-md px-3">type param</code>,
+                donde
+                <code class="bg-[#353b48] rounded-md px-3">type</code>
+                corresponde al tipo de parámetro que recibirá la función, que
+                pueden ser los mismos tipos que tienen las variables:
+                <code class="bg-[#353b48] rounded-md px-3">num</code>,
+                <code class="bg-[#353b48] rounded-md px-3">str</code> y
+                <code class="bg-[#353b48] rounded-md px-3">bool</code>; y
+                <code class="bg-[#353b48] rounded-md px-3">param</code>, que
+                corresponde al nombre del parámetro, que puede ser cualquiera,
+                siempre que contenga únicamente carácteres alfanuméricos y no
+                empiece con dígito.
+              </p>
+
+              <h2 class="font-bold text-xl mt-8">Condicionales</h2>
+              <p>Las condicionales en Togo tienen la siguiente estructura:</p>
+              <code class="bg-[#353b48] rounded-md px-3"
+                >if var op var { code }</code
+              >
+              <p>
+                Donde <code class="bg-[#353b48] rounded-md px-3">if</code> es la
+                palabra clave reservada para definir una condicional. La clave
+                <code class="bg-[#353b48] rounded-md px-3">var</code>
+                puede ser un nombre de varible declarada con anterioridad, un
+                string o un número.
+              </p>
+              <p>
+                La referencia
+                <code class="bg-[#353b48] rounded-md px-3">op</code> hace
+                referencia a los operadores admitidos en Togo, como pueden ser
+                <code class="bg-[#353b48] rounded-md px-3">></code>,
+                <code class="bg-[#353b48] rounded-md px-3"><</code>,
+                <code class="bg-[#353b48] rounded-md px-3">==</code>,
+                <code class="bg-[#353b48] rounded-md px-3">!=</code>.
+              </p>
+              <p>
+                Y por último, dentro de las llaves (<code
+                  class="bg-[#353b48] rounded-md px-3"
+                  >{}</code
+                >) podrá ir cualquier otra instrucción.
+              </p>
+
+              <h2 class="font-bold text-xl mt-6">Ciclo <em>for</em></h2>
+              <p>
+                Togo permite una única forma te iteración, que es a través un
+                ciclo <code class="bg-[#353b48] rounded-md px-3">for</code>, el
+                cual sigue la siguiente estructura:
+              </p>
+              <code class="bg-[#353b48] rounded-md px-3">
+                for(iterable: initial, iterable op goal, iterable increment){
+                code }
+              </code>
+              <p>
+                Donde <code class="bg-[#353b48] rounded-md px-3">for</code> es
+                la palabra clave reservada para iniciar un ciclo, luego continua
+                con la declaración de las variables iterables, que van dentro de
+                paréntesis (<code class="bg-[#353b48] rounded-md px-3">()</code
+                >), y en la referencia
+                <code class="bg-[#353b48] rounded-md px-3">iterable</code>,
+                damos a entender el valor inicial de nuestra variable que será
+                con la que se iterarás, esta pueda ser definida dentro del ciclo
+                o únicamente llamada.
+              </p>
+              <code class="bg-[#353b48] rounded-md px-3">
+                for(alumno: 0, alumno < 30, alumno++){ code }
+              </code>
+              <p>
+                O bien, puedes poner el nombre de una sola variable, que ya haya
+                sido declarada para usarla dentro del for, como se muestra a
+                continuación:
+              </p>
+              <code class="bg-[#353b48] rounded-md px-3">
+                for(alumno, alumno < 30, alumno++){ code }
+              </code>
+              <p>
+                Siguiendo con la estructura del for, tenemos la parte de
+                <code class="bg-[#353b48] rounded-md px-3"
+                  >iterable op goal</code
+                >, que hace referencia al valor donde el ciclo deberá detenerse,
+                donde
+                <code class="bg-[#353b48] rounded-md px-3">iterable</code> es el
+                valor que definimos como iterador inicial,
+                <code class="bg-[#353b48] rounded-md px-3">op</code> hace
+                referencia al operador lógico, que son los mismos que usan
+                dentro de las condicionales:
+                <code class="bg-[#353b48] rounded-md px-3">></code>,
+                <code class="bg-[#353b48] rounded-md px-3"><</code>,
+                <code class="bg-[#353b48] rounded-md px-3">==</code>,
+                <code class="bg-[#353b48] rounded-md px-3">!=</code>; y
+                <code class="bg-[#353b48] rounded-md px-3">goal</code>
+                es el valor al cual se debe de comparar el iterable para que
+                termine el ciclo, que puede ser otra variable, o un numero
+                escrito, como se muestra en el siguiente segmento de código:
+              </p>
+              <code class="bg-[#353b48] rounded-md px-3">
+                for(alumno, alumno < 30, alumno++){ [code ] }
+              </code>
+              <p>
+                Luego continuamos con la sección de
+                <code class="bg-[#353b48] rounded-md px-3"
+                  >iterator increment</code
+                >, donde
+                <code class="bg-[#353b48] rounded-md px-3">increment</code> hace
+                referencia a los operadores de incremento y decremento de Togo,
+                que son <code class="bg-[#353b48] rounded-md px-3">++</code> y
+                <code class="bg-[#353b48] rounded-md px-3">--</code>.
+              </p>
+              <h3>Ejemplos</h3>
+              <code class="bg-[#353b48] rounded-md px-3">
+                for(foo: 1, foo < 5, foo++){ code } <br />
+              </code>
+              <h2 class="font-bold text-xl mt-6">Autores</h2>
+              <p>Lenguaje diseñado y programado por:</p>
+              <ul class="mb-12">
+                <li>Leonardo Toledo Velazco</li>
+                <li>Alexander Pérez Mendoza</li>
+              </ul>
             </div>
+          </div>
         </div>
-        <div class="bg-[#2d3436] w-full p-6 h-screen flex flex-col items-center">
-            <div class="flex justify-center items-center text-2xl">
-                <h3 class="text-[#dfe6e9] font-medium">Analizador léxico</h3>
-            </div>
-            <div class="flex flex-col w-full gap-y-2 h-full">
-                <textarea id="code" class="h-[50%] mt-12 p-4 font-medium text-[#2d3436] focus:outline-none "></textarea>
-                <button  id="analysisBtn"  class="bg-[#636e72] text-[#dfe6e9] py-2 font-medium px-6 cursor-pointer hover:bg-[#8395a7] duration-300">Analizar</button>
-                <button  id="exampleBtn"  class="bg-[#636e72] text-[#dfe6e9] py-2 font-medium px-6 cursor-pointer hover:bg-[#8395a7] duration-300">Ejemplos</button>
-                <button  id="cleanBtn"  class="bg-[#636e72] text-[#dfe6e9] py-2 font-medium px-6 cursor-pointer hover:bg-[#8395a7] duration-300">Limpiar</button>
-            </div>
+      </div>
+
+      <div
+        class="bg-[#1e272e] border-l border-gray-500 w-full p-6 h-screen flex flex-col items-center overflow-auto"
+      >
+        <div class="flex justify-center items-center text-2xl">
+          <h3 class="text-[#dfe6e9] mt-6 font-medium">Analizador léxico</h3>
         </div>
+        <div class="flex flex-col w-full gap-y-2">
+          <textarea
+            id="editor"
+            class="h-[10rem] mt-4 p-4 font-medium text-gray-400 focus:outline-none ring-1 ring-gray-500 bg-transparent"
+          ></textarea>
+          <button
+            id="analysisBtn"
+            class="ring-1 ring-gray-500 mt-2 text-gray-400 py-2 font-medium px-6 cursor-pointer hover:bg-gray-300 hover:text-[#1e272e] duration-300"
+          >
+            Analizar
+          </button>
+          <button
+            id="exampleBtn"
+            class="ring-1 ring-gray-500 text-gray-400 py-2 font-medium px-6 cursor-pointer hover:bg-gray-300 hover:text-[#1e272e] duration-300"
+          >
+            Ejemplos
+          </button>
+          <button
+            id="cleanBtn"
+            class="ring-1 ring-gray-500 mb-6 text-gray-400 py-2 font-medium px-6 cursor-pointer hover:bg-gray-300 hover:text-[#1e272e]  duration-300"
+          >
+            Limpiar
+          </button>
+        </div>
+        <div class="w-full">
+          <div
+            class="-mx-4 mt-4 ring-1 ring-gray-500 sm:-mx-6 md:mx-0 md:rounded-sm"
+          >
+            <table class="min-w-full divide-y divide-gray-300">
+              <thead>
+                <tr>
+                  <th
+                    scope="col"
+                    class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-400"
+                  >
+                    Tokens
+                  </th>
+                  <th
+                    scope="col"
+                    class="px-3 py-3.5 text-left text-sm font-semibold text-gray-400"
+                  >
+                    Lexema
+                  </th>
+                </tr>
+              </thead>
+              <tbody id="output"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
-</body>
-<script src="https://cdn.tailwindcss.com"></script>
-<script src="./scripts/lexical-analysis.js"></script>
+  </body>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="./scripts/lexical-analysis.js"></script>
 </html>

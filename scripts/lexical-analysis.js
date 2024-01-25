@@ -30,13 +30,13 @@ const TogoDictionary = [
     { tipo: "Simbolos", regex: /^>/ },
 ]
 
-const palabrasReservadasList = new Set();
-const identificadoresList = new Set();
-const operadorList = new Set();
-const parentesisList = new Set();
-const llavesList = new Set();
-const simbolosList = new Set();
-const unknownList = new Set();
+let palabrasReservadasList = []
+let identificadoresList = []
+let operadorList = []
+let parentesisList = []
+let llavesList = []
+let simbolosList = []
+let unknownList = []
 
 class Lexer {
     constructor(input) {
@@ -44,7 +44,6 @@ class Lexer {
         this.pos = 0;
         this.dictionary = TogoDictionary;
     }
-
     nextToken() {
         this.skipWhitespace();
         if (this.pos >= this.input.length) {
@@ -88,25 +87,25 @@ class Lexer {
     addToTokenList(tipo, value) {
         switch (tipo) {
             case 'Palabra reservada':
-                palabrasReservadasList.add(value);
+                palabrasReservadasList.push(value);
                 break;
             case 'Identificador':
-                identificadoresList.add(value);
+                identificadoresList.push(value);
                 break;
             case 'Operador':
-                operadorList.add(value);
+                operadorList.push(value);
                 break;
             case 'Paréntesis':
-                parentesisList.add(value);
+                parentesisList.push(value);
                 break;
             case 'Llaves':
-                llavesList.add(value);
+                llavesList.push(value);
                 break;
             case 'Simbolos':
-                simbolosList.add(value);
+                simbolosList.push(value);
                 break;
             case 'UNKNOWN':
-                unknownList.add(value);
+                unknownList.push(value);
         }
     }
 }
@@ -114,12 +113,13 @@ class Lexer {
 
 const validateBtn = document.getElementById('analysisBtn');
 validateBtn.addEventListener('click', () => {
-    palabrasReservadasList.clear();
-    identificadoresList.clear();
-    operadorList.clear();
-    parentesisList.clear();
-    llavesList.clear();
-    simbolosList.clear();
+    palabrasReservadasList = [];
+    identificadoresList = [];
+    operadorList = [];
+    parentesisList = [];
+    llavesList = [];
+    simbolosList = [];
+    unknownList = [];
     editor = document.getElementById('editor').value;
     const lexer = new Lexer(editor);
     let token;
@@ -127,37 +127,37 @@ validateBtn.addEventListener('click', () => {
     output.innerHTML = '';
     while (token = lexer.nextToken()) { }
     output.innerHTML += `
-    ${palabrasReservadasList.size > 0 ?
+    ${palabrasReservadasList.length > 0 ?
             `<tr>  
             <td class="py-4 pl-4 sm:pl-6 pr-3 text-sm text-[#dfe6e9]"> Palabras Reservadas:</td>
             <td class="pr-4 pl-3 text-sm text-[#dfe6e9]">${Array.from(palabrasReservadasList).join(' , ')}</td>
         </tr>` : ''}
-    ${identificadoresList.size > 0 ?
+    ${identificadoresList.length > 0 ?
             `<tr>  
             <td class="py-4 pl-4 sm:pl-6 pr-3 text-sm text-[#dfe6e9]"> Identificadores:</td>
             <td class="pr-4 pl-3 text-sm text-[#dfe6e9]">${Array.from(identificadoresList).join(' , ')}</td>
         </tr>` : ''}
-    ${operadorList.size > 0 ?
+    ${operadorList.length > 0 ?
             `<tr>  
             <td class="py-4 pl-4 sm:pl-6 pr-3 text-sm text-[#dfe6e9]"> Operadores:</td>
             <td class="pr-4 pl-3 text-sm text-[#dfe6e9]">${Array.from(operadorList).join(' , ')}</td>
         </tr>` : ''}
-    ${parentesisList.size > 0 ?
+    ${parentesisList.length > 0 ?
             `<tr>  
             <td class="py-4 pl-4 sm:pl-6 pr-3 text-sm text-[#dfe6e9]"> Paréntesis:</td>
             <td class="pr-4 pl-3 text-sm text-[#dfe6e9]">${Array.from(parentesisList).join(' , ')}</td>
         </tr>` : ''}
-    ${llavesList.size > 0 ?
+    ${llavesList.length > 0 ?
             `<tr>  
             <td class="py-4 pl-4 sm:pl-6 pr-3 text-sm text-[#dfe6e9]"> Llaves:</td>
             <td class="pr-4 pl-3 text-sm text-[#dfe6e9]">${Array.from(llavesList).join(' , ')}</td>
         </tr>` : ''}
-    ${simbolosList.size > 0 ?
+    ${simbolosList.length > 0 ?
             `<tr>  
             <td class="py-4 pl-4 sm:pl-6 pr-3 text-sm text-[#dfe6e9]"> Símbolos:</td>
             <td class="pr-4 pl-3 text-sm text-[#dfe6e9]">${Array.from(simbolosList).join(' , ')}</td>
         </tr>` : ''}
-    ${unknownList.size > 0 ?
+    ${unknownList.length > 0 ?
             `<tr>  
             <td class="py-4 pl-4 sm:pl-6 pr-3 text-sm text-[#dfe6e9]"> Desconocidos:</td>
             <td class="pr-4 pl-3 text-sm text-[#dfe6e9]">${Array.from(unknownList).join(' , ')}</td>
@@ -168,15 +168,17 @@ validateBtn.addEventListener('click', () => {
 
 
 const cleanBtn = document.getElementById('cleanBtn');
+palabrasReservadasList = [];
+identificadoresList = [];
+operadorList = [];
+parentesisList = [];
+llavesList = [];
+simbolosList = [];
+unknownList = [];
 cleanBtn.addEventListener('click', () => {
     let output = document.getElementById('output');
     output.innerHTML = '';
-    palabrasReservadasList.clear();
-    identificadoresList.clear();
-    operadorList.clear();
-    parentesisList.clear();
-    llavesList.clear();
-    simbolosList.clear();
+
 })
 
 
@@ -191,7 +193,8 @@ exampleBtn.addEventListener('click', () => {
         'for(i = 0, 1 < 5, i ++){}',
         'str name: "pepe";',
         'num age: 30;',
-        'bool married: true;'
+        'bool married: true;',
+        ""
     ];
     let editor = document.getElementById('editor');
     var randomExample = examples[Math.floor(Math.random() * examples.length)];

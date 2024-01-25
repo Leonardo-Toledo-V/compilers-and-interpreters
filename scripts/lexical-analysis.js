@@ -1,64 +1,71 @@
+const TogoDictionary = [
+    { tipo: "Palabra reservada", nombre: "fn", regex: /^fn\b/ },
+    { tipo: "Palabra reservada", nombre: "str", regex: /^str\b/ },
+    { tipo : "Palabra reservada", nombre: "void", regex: /^void\b/ },
+    { tipo : "Palabra reservada", nombre: "bool", regex: /^bool\b/ },
+    { tipo : "Palabra reservada", nombre: "num", regex: /^num\b/ },
+    { tipo : "Palabra reservada", nombre: "if", regex: /^if\b/ },
+    { tipo : "Palabra reservada", nombre: "for", regex: /^for\b/ },
+    { tipo: "Variable", nombre: "Cadena de Caracteres", regex: /^"([^"]*)"/ },
+    { tipo: "Variables", nombre: "Booleano", regex: /^(true|false)\b/ },
+    { tipo: "Variable", nombre: "Números", regex: /^\d+(\.\d+)?/ },
+    { tipo: "Variables", nombre: "Variable", regex: /^[a-zA-Z_][a-zA-Z0-9_]*/ },
+    { tipo: "Simbolo", nombre: "Paréntesis Apertura", regex: /^\(/ },
+    { tipo: "Simbolo", nombre: "Paréntesis Cierre", regex: /^\)/ },
+    { tipo: "Simbolo", nombre: "Llaves Apertura", regex: /^\{/ },
+    { tipo: "Simbolo", nombre: "Llaves Cierre", regex: /^\}/ },
+    { tipo: "Simbolos", nombre: "Dos puntos", regex: /^:/ },
+    { tipo: "Simbolos", nombre: "Coma", regex: /^,/ },
+    { tipo: "Simbolos", nombre: "Punto y coma", regex: /^;/ },
+    { tipo: "Símbolos", nombre: "Triple igual", regex: /^\=\=\=/ },
+    { tipo: "Símbolos", nombre: "Doble igual", regex: /^\=\=/ },
+    { tipo: "Símbolos", nombre: "Igual", regex: /^=/ },
+    { tipo: "Símbolos", nombre: "Doble distinto de", regex: /^\!\=\=/ },
+    { tipo: "Símbolos", nombre: "Distinto de", regex: /^\!\=/ },
+    { tipo: "Símbolos", nombre: "Menor igual", regex: /^\<\=/ },
+    { tipo: "Símbolos", nombre: "Mayor igual", regex: /^\>\=/ },
+    { tipo: "Operador", nombre: "Menor que", regex: /^</ },
+    { tipo: "Símbolos", nombre: "Mayor que", regex: /^>/ },
+    { tipo: "Operador", nombre: "Incremento", regex: /^\+\+/ },
+    { tipo: "Operador", nombre: "Decremento", regex: /^--/ },
+]
+
+
 class Lexer {
     constructor(input) {
         this.input = input;
         this.pos = 0;
-        this.reservedWords = {
-            'fn': 'PALABRA RESERVADA',
-            'str': 'PALABRA RESERVADA',
-            'void': 'PALABRA RESERVADA',
-            'bool': 'PALABRA RESERVADA',
-            'num': 'PALABRA RESERVADA',
-            'if': 'PALABRA RESERVADA',
-            'for': 'PALABRA RESERVADA',
-            '=': 'TOKEN',
-            '==': 'TOKEN',
-            '===': 'TOKEN',
-            '>': 'TOKEN',
-            '<': 'TOKEN',
-            '>=': 'TOKEN',
-            '<=': 'TOKEN',
-            '!=': 'TOKEN',
-            '!==': 'TOKEN',
-            '++': 'TOKEN',
-            ',': 'SIMBOLO',
-            ')': 'SIMBOLOS',
-            '(': 'SIMBOLOS',
-            '{': 'SIMBOLOS',
-            '}': 'SIMBOLOS',
-            ':': 'SIMBOLOS',
-            ';': 'SIMBOLOS',
-        };
+        this.dictionary = TogoDictionary;
     }
+
     nextToken() {
         this.skipWhitespace();
         if (this.pos >= this.input.length) {
             return null;
         }
-        for (let word in this.reservedWords) {
-            if (this.input.substr(this.pos, word.length) === word) {
-                this.pos += word.length;
-                return { type: this.reservedWords[word], value: word };
+
+        for (const { tipo, nombre, regex } of this.dictionary) {
+            const match = this.input.substr(this.pos).match(regex);
+
+            if (match && match.index === 0) {
+                this.pos += match[0].length;
+                return { type: tipo, value: match[0], nombre: nombre };
             }
         }
+
         let char = this.input[this.pos];
-        let number = '';
-        while (this.pos < this.input.length && /[0-9]/.test(char)) {
-            number += char;
-            this.pos++;
-            char = this.input[this.pos];
+
+
+        if (/[a-zA-Z0-9_]/.test(char)) {
+            let word = '';
+            while (this.pos < this.input.length && /[a-zA-Z0-9_]/.test(char)) {
+                word += char;
+                this.pos++;
+                char = this.input[this.pos];
+            }
+            return { type: 'Identificador', value: word };
         }
-        if (number !== '') {
-            return { type: 'NUMBER', value: number };
-        }
-        let word = '';
-        while (this.pos < this.input.length && /[a-z0-9]/i.test(char)) {
-            word += char;
-            this.pos++;
-            char = this.input[this.pos];
-        }
-        if (word !== '') {
-            return { type: 'IDENTIFICATOR', value: word };
-        }
+
         this.pos++;
         return { type: 'UNKNOWN', value: char };
     }
@@ -69,6 +76,7 @@ class Lexer {
         }
     }
 }
+
 
 const validateBtn = document.getElementById('analysisBtn');
     validateBtn.addEventListener('click', ()=> {
